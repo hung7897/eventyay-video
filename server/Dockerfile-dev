@@ -8,6 +8,7 @@ COPY . /app
 COPY docker-dev-entrypoint-celery.sh /app/
 COPY docker-dev-entrypoint.sh /app/
 
+RUN chmod +x /app/docker-dev-entrypoint.sh
 RUN chmod +x /app/docker-dev-entrypoint-celery.sh
 
 # Install any needed packages specified in requirements.txt
@@ -19,3 +20,5 @@ ENV VENUELESS_COMMIT_SHA=devcontainer
 
 # Make port 8375 available to the world outside this container
 EXPOSE 8375
+
+CMD ["bash", "/app/docker-dev-entrypoint.sh"]
