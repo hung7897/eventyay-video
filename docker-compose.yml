@@ -16,13 +16,7 @@ services:
       - db
       - redis
       - redis1
-    command: >
-      bash -c "
-      echo 'Apply database migrations';
-      python manage.py migrate;
-      echo 'Starting server';
-      exec python manage.py runserver 0.0.0.0:8375;
-      "
+    entrypoint: ["bash", "/app/docker-dev-entrypoint.sh"]
 
   celery:
     image: eventyay/eventyay-video:development-server
@@ -37,11 +31,7 @@ services:
       - db
       - redis
       - redis1
-    command: >
-      bash -c "
-        echo "Starting server"
-        exec celery -A venueless.celery_app worker -l info
-      "
+    entrypoint: ["bash", "/app/docker-dev-entrypoint-celery.sh"]
 
   webapp:
     image: eventyay/eventyay-video:development-webapp
