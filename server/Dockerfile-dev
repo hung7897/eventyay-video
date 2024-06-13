@@ -1,9 +1,14 @@
 FROM python:3.11-bookworm
 
-
+WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 COPY . /app
+
+COPY server/docker-dev-entrypoint-celery.sh /app/
+COPY server/docker-dev-entrypoint.sh /app/
+
+RUN chmod +x /app/docker-dev-entrypoint-celery.sh
 
 # Install any needed packages specified in requirements.txt
 COPY requirements.txt /requirements.txt
@@ -11,6 +16,6 @@ RUN apt update && apt install -y poppler-utils && apt-get clean && rm -rf /var/l
 RUN pip3 install -U pip wheel setuptools && pip3 install -Ur requirements.txt
 ENV VENUELESS_COMMIT_SHA=devcontainer
 # Set the working directory in the container
-WORKDIR /app
+
 # Make port 8375 available to the world outside this container
 EXPOSE 8375
