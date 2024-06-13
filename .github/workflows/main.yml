@@ -3,7 +3,7 @@ name: Docker-deploy
 on:
   workflow_dispatch:
   push:
-    branches: [ development, master ]
+    branches: [ testing ]
 
 jobs:
   push_to_registry:
