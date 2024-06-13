@@ -22,5 +22,6 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
       - name: Deploy
         run: |
+          echo "Hello World"
           scp docker-compose.yml ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/eventyay/eventyay-videos
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/eventyay/eventyay-videos && docker pull eventyay/eventyay-video:development-server && docker pull eventyay/eventyay-video:development-webapp && docker-compose up -d"
