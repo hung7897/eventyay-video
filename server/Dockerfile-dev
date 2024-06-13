@@ -1,6 +1,6 @@
 FROM python:3.11-bookworm
 
-WORKDIR /app
+
 
 # Copy the current directory contents into the container at /app
 COPY . /app
@@ -21,4 +21,4 @@ ENV VENUELESS_COMMIT_SHA=devcontainer
 # Make port 8375 available to the world outside this container
 EXPOSE 8375
 
-CMD ["bash", "/app/docker-dev-entrypoint.sh"]
+
