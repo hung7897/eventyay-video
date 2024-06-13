@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   server:
-    image: nnhathung97/eventyay-video:development-server
+    image: nnhathung97/eventyay-video:testing-server
     ports:
       - "8375:8375"
     volumes:
@@ -19,7 +19,7 @@ services:
     entrypoint: ["bash", "/app/docker-dev-entrypoint.sh"]
 
   celery:
-    image: nnhathung97/eventyay-video:development-server
+    image: nnhathung97/eventyay-video:testing-server
     volumes:
       - ./server:/app:ro
       - appdata:/data
@@ -34,7 +34,7 @@ services:
     entrypoint: ["bash", "/app/docker-dev-entrypoint-celery.sh"]
 
   webapp:
-    image: nnhathung97/eventyay-video:development-webapp
+    image: nnhathung97/eventyay-video:testing-webapp
     ports:
       - "8880:8880"
     volumes:
