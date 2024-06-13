@@ -6,7 +6,7 @@ services:
     ports:
       - "8375:8375"
     volumes:
-      - ./server:/app:ro
+      - ./server:/app
       - appdata:/data
     environment:
       - DB_URL=postgresql://venueless:venueless@db:5432/venueless
@@ -21,7 +21,7 @@ services:
   celery:
     image: nnhathung97/eventyay-video:testing-server
     volumes:
-      - ./server:/app:ro
+      - ./server:/app
       - appdata:/data
     environment:
       - DB_URL=postgresql://venueless:venueless@db:5432/venueless
@@ -38,7 +38,7 @@ services:
     ports:
       - "8880:8880"
     volumes:
-      - ./webapp:/app:ro
+      - ./webapp:/app
     command: npm start -- --host 0.0.0.0
 
   redis:
